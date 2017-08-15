@@ -1,0 +1,15 @@
+{
+  "name": "shia-bot",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "@types/sequelize": "^4.0.69",
+    "sequelize": "^4.5.0",
+    "sqlite3": "^3.1.9",
+    "yamdbf": "^3.0.1"
+  }
+}
