@@ -30,8 +30,6 @@ function increaseKarma(sender: User, receiver: User, amount: number): Promise<an
         ', to:', receiver.username);
 
     const storage = client.storage;
-
-
     return storage.get(sender.username).then(data => {
         try {
             data = JSON.parse(data);
@@ -69,7 +67,6 @@ function increaseKarma(sender: User, receiver: User, amount: number): Promise<an
                 karmaBank: 10
             };
         }
-
         if (data.karma === null || data.karma === undefined) {
             data.karma = 0;
         }
@@ -95,11 +92,13 @@ client.on('message', function (message: Message) {
 
     if (users.length > 1) {
         console.debug('Cannot add karma more than 1 user at a time');
+        return;
     }
 
     const mentionedUser = users[0];
     if (mentionedUser.id === author.id) {
         console.debug('Cannot add karma to yourself:', mentionedUser.username);
+        return;
     }
 
     const matcher = /\+([0-5]{1})/;
