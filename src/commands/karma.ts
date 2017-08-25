@@ -19,7 +19,9 @@ export default class KarmaCommand extends Command {
 
         if (message.mentions && message.mentions.users) {
             const user = extractUsers(message.mentions.users)[0];
-            username = user.username;
+            if (user) {
+                username = user.username;
+            }
         }
 
         storage.get(username).then(data => {
