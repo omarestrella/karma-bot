@@ -15,6 +15,10 @@ export default class KarmaCommand extends Command {
 
         const username = args.join(' ');
         const storage = this.client.storage;
+	    
+	if (username && username[0] === '@') {
+            username = username.slice(1);
+	}
 
         storage.get(username).then(data => {
             try {
