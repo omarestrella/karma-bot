@@ -13,12 +13,12 @@ export default class KarmaCommand extends Command {
     action(message: Message, args: any[]) {
         console.debug('Checking karma...');
 
-        const username = args.join(' ');
+        let username = args.join(' ');
         const storage = this.client.storage;
-	    
-	if (username && username[0] === '@') {
+
+        if (username && username[0] === '@') {
             username = username.slice(1);
-	}
+        }
 
         storage.get(username).then(data => {
             try {
