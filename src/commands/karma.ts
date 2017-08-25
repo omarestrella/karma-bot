@@ -1,5 +1,6 @@
 import { Command, CommandDecorators } from 'yamdbf';
 import { Message } from '../types';
+import { extractUsers } from '../utils';
 
 export default class KarmaCommand extends Command {
     public constructor () {
@@ -16,8 +17,9 @@ export default class KarmaCommand extends Command {
         let username = args.join(' ');
         const storage = this.client.storage;
 
-        if (username && username[0] === '@') {
-            username = username.slice(1);
+        if (message.mentions && message.mentions.users) {
+            const user = extractUsers(message.mentions.users)[0];
+            username = user.username;
         }
 
         storage.get(username).then(data => {

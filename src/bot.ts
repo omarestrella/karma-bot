@@ -2,6 +2,7 @@ import { join } from 'path';
 import { Client } from 'yamdbf';
 import { User, Message, MessageMentions } from './types';
 import config from './config';
+import { extractUsers } from './utils';
 
 const EMPTY_BANK = 'EMPTY_BANK';
 
@@ -14,16 +15,6 @@ const client = new Client({
 client.on('clientReady', function () {
     console.log('Ready!');
 });
-
-function extractUsers(collection: Map<string, User>): User[] {
-    let users = [];
-    for (let user of collection.values()) {
-        if (!user.bot) {
-            users.push(user);
-        }
-    }
-    return users;
-}
 
 function increaseKarma(sender: User, receiver: User, amount: number): Promise<any> {
     console.debug('Trying to add karma from:', sender.username,
